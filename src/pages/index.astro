@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Resume from '../components/Resume.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Nav />
+  <Hero />
+  <About />
+  <Projects />
+  <Skills />
+  <Resume />
+  <Contact />
+  <Footer />
+
+  <!-- Particles container -->
+  <div class="particles" id="particles"></div>
+
+  <!-- Float CTA (mobile) -->
+  <a href="#contact" class="float-cta" id="floatCta">Let's Talk →</a>
+
+  <!-- Bottom tab bar (mobile) -->
+  <nav class="bottom-tab-bar" aria-label="Page navigation">
+    <a href="#about" class="btb-item" data-section="about">
+      <span class="btb-icon">◉</span><span class="btb-label">About</span>
+    </a>
+    <a href="#projects" class="btb-item" data-section="projects">
+      <span class="btb-icon">⬡</span><span class="btb-label">Work</span>
+    </a>
+    <a href="#skills" class="btb-item" data-section="skills">
+      <span class="btb-icon">◈</span><span class="btb-label">Skills</span>
+    </a>
+    <a href="#resume" class="btb-item" data-section="resume">
+      <span class="btb-icon">☰</span><span class="btb-label">Resume</span>
+    </a>
+    <a href="#contact" class="btb-item" data-section="contact">
+      <span class="btb-icon">◎</span><span class="btb-label">Contact</span>
+    </a>
+  </nav>
+</Layout>

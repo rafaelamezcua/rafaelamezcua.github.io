@@ -1,0 +1,256 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Rafael Amezcua — Marketing Analytics & Development',
+  description = 'U.S. Navy Veteran and Marketing Analytics student at USD. I bridge brand strategy and technical execution — from campaign design to the database behind it.',
+  image = '/images/headshot.webp',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="canonical" href={canonicalURL} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Primary meta -->
+  <meta name="description" content={description} />
+  <meta name="author" content="Rafael Amezcua" />
+
+  <!-- Open Graph (LinkedIn, Facebook, Slack) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(image, Astro.site)} />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(image, Astro.site)} />
+
+  <!-- Fonts: Raleway (body) + Playfair Display (headings) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Raleway:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Anime.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" is:inline></script>
+
+  <!-- Dark mode: run before paint to prevent flash -->
+  <script is:inline>
+    (function () {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+</head>
+<body>
+  <slot />
+
+  <script is:inline>
+    // ── DARK MODE TOGGLE ──
+    window.toggleTheme = function () {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      const btn = document.getElementById('themeToggle');
+      if (btn) btn.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    // ── PARTICLES ──
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+      for (let i = 0; i < 25; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 8 + 's';
+        p.style.animationDuration = (6 + Math.random() * 4) + 's';
+        particlesContainer.appendChild(p);
+      }
+    }
+
+    // ── TYPING EFFECT ──
+    const heroSub = document.getElementById('heroSub');
+    if (heroSub) {
+      const subOriginal = heroSub.innerHTML;
+      const subLines = subOriginal.split('<br/>');
+      heroSub.innerHTML = '';
+      let lineIndex = 0;
+
+      function typeLine() {
+        if (lineIndex < subLines.length) {
+          const line = document.createElement('span');
+          line.style.display = 'block';
+          line.style.marginBottom = '0.5rem';
+          heroSub.appendChild(line);
+          let text = subLines[lineIndex];
+          let charIndex = 0;
+          const typeChar = setInterval(() => {
+            if (charIndex < text.length) {
+              line.textContent += text[charIndex];
+              charIndex++;
+            } else {
+              clearInterval(typeChar);
+              lineIndex++;
+              setTimeout(typeLine, 300);
+            }
+          }, 17);
+        }
+      }
+
+      window.addEventListener('load', () => {
+        setTimeout(() => document.getElementById('heroLine')?.classList.add('visible'), 200);
+        setTimeout(() => document.getElementById('heroEyebrow')?.classList.add('visible'), 400);
+        setTimeout(() => document.getElementById('heroName')?.classList.add('visible'), 500);
+        setTimeout(() => {
+          heroSub.style.opacity = '1';
+          heroSub.style.transform = 'translateY(0)';
+          typeLine();
+        }, 800);
+        setTimeout(() => document.getElementById('heroCta')?.classList.add('visible'), 2500);
+        // ghost CTA and stats use CSS animation (no JS needed)
+      });
+    }
+
+    // ── CAROUSEL ──
+    const carouselState = {};
+    function getSlides(id) { return document.querySelectorAll(`#carousel-${id} .carousel-slide`); }
+    function moveCarousel(id, dir) {
+      const slides = getSlides(id);
+      carouselState[id] = ((carouselState[id] || 0) + dir + slides.length) % slides.length;
+      updateCarousel(id);
+    }
+    function goToSlide(id, idx) { carouselState[id] = idx; updateCarousel(id); }
+    function updateCarousel(id) {
+      const idx = carouselState[id] || 0;
+      document.getElementById(`carousel-${id}`).style.transform = `translateX(-${idx * 100}%)`;
+      document.querySelectorAll(`#dots-${id} .dot`).forEach((d, i) => d.classList.toggle('active', i === idx));
+    }
+    window.moveCarousel = moveCarousel;
+    window.goToSlide = goToSlide;
+
+    // ── NAV SCROLL ──
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbar?.classList.toggle('scrolled', window.scrollY > 60));
+
+    // ── ANIME.JS SCROLL ANIMATIONS ──
+    function onEnter(el, fn, threshold) {
+      if (!el) return;
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { fn(e.target); obs.unobserve(e.target); } });
+      }, { threshold: threshold || 0.15 }).observe(el);
+    }
+
+    const legacyObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => legacyObs.observe(el));
+
+    onEnter(document.querySelector('.about-img-wrap'), el => {
+      anime({ targets: el, translateX: [-70, 0], opacity: [0, 1], rotate: [-1.5, 0], duration: 950, easing: 'easeOutExpo' });
+    });
+    onEnter(document.querySelector('#about .fade-in:not(.about-img-wrap)'), el => {
+      anime({ targets: el.querySelectorAll('p, h2, .s-label, .s-divider, .pills'), translateY: [40, 0], opacity: [0, 1], duration: 700, delay: anime.stagger(90), easing: 'easeOutCubic' });
+    });
+    onEnter(document.querySelector('.proj-grid'), el => {
+      anime({ targets: el.querySelectorAll('.proj-card'), translateY: [60, 0], opacity: [0, 1], scale: [0.95, 1], duration: 750, delay: anime.stagger(130), easing: 'easeOutExpo' });
+    });
+    onEnter(document.querySelector('.skills-grid'), el => {
+      anime({ targets: el.querySelectorAll('.skill-group'), translateY: [30, 0], opacity: [0, 1], duration: 600, delay: anime.stagger(80), easing: 'easeOutCubic' });
+      anime({ targets: el.querySelectorAll('.skill-tag'), scale: [0.85, 1], opacity: [0, 1], duration: 500, delay: anime.stagger(35, { from: 'center' }), easing: 'easeOutBack' });
+    }, 0.08);
+    onEnter(document.querySelector('.timeline'), el => {
+      anime({ targets: el.querySelectorAll('.tl-item'), translateX: [-50, 0], opacity: [0, 1], duration: 650, delay: anime.stagger(110), easing: 'easeOutExpo' });
+    });
+    onEnter(document.querySelector('.contact-grid'), el => {
+      anime({ targets: el.querySelector('.fade-in:first-child'), translateX: [-40, 0], opacity: [0, 1], duration: 700, easing: 'easeOutExpo' });
+      anime({ targets: el.querySelectorAll('.form-group, .form-submit'), translateY: [30, 0], opacity: [0, 1], duration: 550, delay: anime.stagger(80, { start: 200 }), easing: 'easeOutCubic' });
+    }, 0.08);
+    document.querySelectorAll('.s-title').forEach(el => {
+      el.style.overflow = 'hidden';
+      onEnter(el, target => {
+        anime({ targets: target, translateY: ['102%', '0%'], opacity: [0, 1], duration: 700, easing: 'easeOutExpo' });
+      });
+    });
+
+    // ── ACTIVE NAV LINKS ──
+    const secs = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+      links.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--terra2)' : ''; });
+    });
+
+    // ── MOBILE NAV ──
+    const navHamburger = document.getElementById('navHamburger');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    function closeMobileNav() {
+      navHamburger?.classList.remove('open');
+      mobileNavOverlay?.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    navHamburger?.addEventListener('click', () => {
+      const isOpen = mobileNavOverlay?.classList.toggle('open');
+      navHamburger?.classList.toggle('open');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    // Close overlay on outside click
+    mobileNavOverlay?.addEventListener('click', e => {
+      if (e.target === mobileNavOverlay) closeMobileNav();
+    });
+    window.closeMobileNav = closeMobileNav;
+
+    // ── FLOAT CTA ──
+    const floatCta = document.getElementById('floatCta');
+    window.addEventListener('scroll', () => {
+      const heroH = document.getElementById('hero')?.offsetHeight || 0;
+      const contactTop = document.getElementById('contact')?.offsetTop || 0;
+      const y = window.scrollY;
+      floatCta?.classList.toggle('visible', y > heroH * 0.6 && y < contactTop - 200);
+    });
+
+    // ── BOTTOM TAB BAR ──
+    const btbItems = document.querySelectorAll('.btb-item');
+    window.addEventListener('scroll', () => {
+      let cur = '';
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 150) cur = s.id; });
+      btbItems.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    });
+
+    // ── ABOUT READ MORE ──
+    window.toggleAbout = function () {
+      const more = document.getElementById('aboutMore');
+      const btn = document.getElementById('readMoreBtn');
+      const open = more.classList.toggle('open');
+      btn.textContent = open ? 'Show less ↑' : 'Read more ↓';
+    };
+
+    // ── SKILL ACCORDION (mobile) ──
+    if (window.innerWidth <= 700) {
+      document.querySelectorAll('.skill-group h3').forEach(h3 => {
+        h3.addEventListener('click', () => h3.parentElement.classList.toggle('open'));
+      });
+    }
+  </script>
+</body>
+</html>

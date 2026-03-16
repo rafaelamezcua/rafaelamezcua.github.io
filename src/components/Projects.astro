@@ -1,0 +1,148 @@
+---
+import { Image } from 'astro:assets';
+import meImg from '../assets/images/Me.JPG';
+import bartImg from '../assets/images/Bart.jpg';
+import clothesImg from '../assets/images/Clothes.jpg';
+---
+
+<section id="projects">
+  <div class="container">
+    <p class="s-label fade-in">Selected Work</p>
+    <h2 class="s-title fade-in">Projects & Branding</h2>
+    <div class="s-divider fade-in"></div>
+    <div class="proj-grid">
+
+      <!-- Intertwine Fitness -->
+      <div class="proj-card fade-in">
+        <div class="proj-thumb if">
+          <div class="if-mockup">
+            <div class="if-logo-mark">
+              <span class="if-letters">IF</span>
+            </div>
+            <div class="if-swatches">
+              <div class="if-swatch" style="background:#0d6e4f;" title="Terra Green"></div>
+              <div class="if-swatch" style="background:#12a372;" title="Accent Green"></div>
+              <div class="if-swatch" style="background:#c8a870;" title="Gold"></div>
+              <div class="if-swatch" style="background:#0a1f15;" title="Dark"></div>
+            </div>
+            <div class="if-tagline">Intertwine Fitness · Brand Identity</div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="tag">Brand Identity</span>
+            <span class="tag">Logo Design</span>
+            <span class="tag">Illustrator</span>
+            <span class="tag">In Progress</span>
+          </div>
+          <div class="proj-title">Intertwine Fitness</div>
+          <p class="proj-desc">
+            Developing the full brand identity for Intertwine Fitness — wordmark, logo system,
+            color palette, and typography. Focused on conveying strength, connectivity, and
+            motivation through clean geometric design.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cycle Care -->
+      <div class="proj-card fade-in">
+        <div class="proj-thumb cc">
+          <div class="carousel-track" id="carousel-cc">
+            <div class="carousel-slide">
+              <Image src={meImg} alt="Cycle Care event" width={600} height={400} quality={80} loading="eager" style="object-position:center 30%;" />
+            </div>
+            <div class="carousel-slide">
+              <Image src={bartImg} alt="Cycle Care volunteer" width={600} height={400} quality={80} style="object-position:center 30%;" />
+            </div>
+            <div class="carousel-slide">
+              <Image src={clothesImg} alt="Cycle Care clothing collection" width={600} height={400} quality={80} style="object-position:center 1%;" />
+            </div>
+          </div>
+          <button class="carousel-btn prev" onclick="moveCarousel('cc',-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveCarousel('cc',1)">&#8250;</button>
+          <div class="carousel-dots" id="dots-cc">
+            <div class="dot active" onclick="goToSlide('cc',0)"></div>
+            <div class="dot" onclick="goToSlide('cc',1)"></div>
+            <div class="dot" onclick="goToSlide('cc',2)"></div>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="tag">Sustainability</span>
+            <span class="tag">Campaign Strategy</span>
+            <span class="tag">Marketing</span>
+          </div>
+          <div class="proj-title">Cycle Care</div>
+          <p class="proj-desc">
+            Founded and led Cycle Care, a textile waste sustainability initiative at SDCC. Developed
+            brand strategy, messaging framework, and outreach materials to drive community engagement.
+          </p>
+          <a
+            href="/docs/Winnie and Rafael Final Impact Report.pdf"
+            target="_blank"
+            style="display:inline-block;margin-top:1rem;background:var(--terra);color:var(--cream);padding:0.5rem 1.2rem;border-radius:0.4rem;font-size:0.82rem;font-weight:700;text-decoration:none;"
+          >View Impact Report →</a>
+        </div>
+      </div>
+
+      <!-- JobTracker -->
+      <div class="proj-card wide fade-in">
+        <div class="proj-thumb" style="background:linear-gradient(135deg,#0d0d0d,#1a1a2e);height:220px;display:flex;align-items:center;justify-content:center;padding:2rem;gap:2rem;">
+          <div style="flex:1;max-width:420px;">
+            <div style="background:#141414;border:1px solid #222;border-radius:10px;overflow:hidden;">
+              <div style="background:#131313;padding:8px 14px;display:flex;gap:6px;border-bottom:1px solid #1e1e1e;">
+                <div style="width:8px;height:8px;border-radius:50%;background:#c46a6a;"></div>
+                <div style="width:8px;height:8px;border-radius:50%;background:#d4a847;"></div>
+                <div style="width:8px;height:8px;border-radius:50%;background:#5aad6a;"></div>
+              </div>
+              <div style="padding:1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+                <div style="background:#1e1e1e;border-radius:6px;padding:8px 10px;">
+                  <div style="font-size:8px;color:#555;text-transform:uppercase;margin-bottom:4px;">Total</div>
+                  <div style="font-size:16px;font-weight:bold;color:#7f77dd;">12</div>
+                </div>
+                <div style="background:#1e1e1e;border-radius:6px;padding:8px 10px;">
+                  <div style="font-size:8px;color:#555;text-transform:uppercase;margin-bottom:4px;">Applied</div>
+                  <div style="font-size:16px;font-weight:bold;color:#d4a847;">7</div>
+                </div>
+                <div style="background:#1e1e1e;border-radius:6px;padding:8px 10px;">
+                  <div style="font-size:8px;color:#555;text-transform:uppercase;margin-bottom:4px;">Interview</div>
+                  <div style="font-size:16px;font-weight:bold;color:#6a9fd8;">3</div>
+                </div>
+                <div style="background:#1e1e1e;border-radius:6px;padding:8px 10px;">
+                  <div style="font-size:8px;color:#555;text-transform:uppercase;margin-bottom:4px;">Offers</div>
+                  <div style="font-size:16px;font-weight:bold;color:#5aad6a;">2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="color:rgba(127,119,221,0.15);font-size:5rem;font-weight:900;letter-spacing:-4px;font-family:monospace;">&lt;/&gt;</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="tag">Full-Stack</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <div class="proj-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+            JobTracker
+            <a
+              href="https://jobtracker-up.up.railway.app"
+              target="_blank"
+              style="font-size:0.78rem;font-weight:700;color:var(--terra);text-decoration:none;border:1px solid rgba(13,110,79,0.3);padding:0.25rem 0.8rem;border-radius:0.3rem;transition:all 0.2s;"
+              onmouseover="this.style.background='rgba(13,110,79,0.1)'"
+              onmouseout="this.style.background='transparent'"
+            >View Live →</a>
+          </div>
+          <p class="proj-desc">
+            Built a full-stack job application tracker from scratch — Node.js/Express backend,
+            PostgreSQL database, JWT authentication, and a clean vanilla JS frontend. Features
+            include a monthly interview calendar, weekly goal tracker, and live application stats.
+            Deployed on Railway.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

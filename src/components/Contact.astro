@@ -1,0 +1,95 @@
+---
+---
+
+<section id="contact">
+  <div class="container">
+    <p class="s-label fade-in">Let's Connect</p>
+    <h2 class="s-title fade-in">Get In Touch</h2>
+    <div class="s-divider fade-in"></div>
+    <div class="contact-grid">
+      <div class="fade-in">
+        <p class="contact-info" style="margin-bottom:2.5rem;">
+          Whether you're a brand looking for a collaborator, a company with an internship
+          opportunity, or just want to connect — I'd love to hear from you.
+        </p>
+        <a href="mailto:ramezcua12@gmail.com" class="c-link">
+          <span class="c-icon">✉</span>ramezcua12@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/rafael-amezcua/" target="_blank" rel="noopener noreferrer" class="c-link">
+          <span class="c-icon">in</span>linkedin.com/in/rafael-amezcua
+        </a>
+        <a href="/docs/Rafael_Amezcua_Resume.pdf" target="_blank" class="c-link">
+          <span class="c-icon">📄</span>Download Resume
+        </a>
+      </div>
+      <div class="fade-in">
+        <form id="contactForm" action="https://formspree.io/f/xnjgpeza" method="POST" novalidate>
+          <div class="form-group">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" type="email" name="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" placeholder="Tell me about your project or opportunity..." required></textarea>
+          </div>
+          <!-- Honeypot spam field -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <div id="formStatus" class="form-status" aria-live="polite"></div>
+          <button type="submit" class="form-submit" id="formSubmitBtn">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('formSubmitBtn');
+
+  contactForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    const name = contactForm.querySelector('[name="name"]').value.trim();
+    const email = contactForm.querySelector('[name="email"]').value.trim();
+    const message = contactForm.querySelector('[name="message"]').value.trim();
+
+    if (!name || !email || !message) {
+      formStatus.textContent = 'Please fill in all fields.';
+      formStatus.className = 'form-status error';
+      return;
+    }
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    formStatus.textContent = '';
+    formStatus.className = 'form-status';
+
+    try {
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' },
+      });
+
+      if (res.ok) {
+        formStatus.textContent = '✓ Message sent! I\'ll get back to you soon.';
+        formStatus.className = 'form-status success';
+        contactForm.reset();
+      } else {
+        throw new Error('Server error');
+      }
+    } catch {
+      formStatus.textContent = 'Something went wrong. Email me directly at ramezcua12@gmail.com';
+      formStatus.className = 'form-status error';
+    }
+
+    submitBtn.textContent = 'Send Message →';
+    submitBtn.disabled = false;
+  });
+</script>

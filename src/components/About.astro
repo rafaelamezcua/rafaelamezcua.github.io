@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import headshot from '../assets/images/headshot.webp';
+---
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap fade-in">
+        <Image
+          src={headshot}
+          alt="Rafael Amezcua"
+          width={400}
+          height={533}
+          quality={85}
+          loading="eager"
+        />
+      </div>
+      <div class="fade-in">
+        <p class="s-label">About Me</p>
+        <h2 class="s-title">Built for precision. Designed for impact.</h2>
+        <div class="s-divider"></div>
+        <div class="about-text">
+          <p>
+            I am a U.S. Navy Veteran and Marketing student at USD, blending operational discipline
+            with data-driven creativity. I don't just build campaigns; I build the technical systems
+            that power them.
+          </p>
+          <div class="about-more" id="aboutMore">
+            <p>
+              From designing brand identities in Illustrator to architecting PostgreSQL databases,
+              I bridge the gap between high-level strategy and hands-on execution.
+            </p>
+            <p>
+              Currently focused on Marketing Analytics and seeking collaborations with
+              forward-thinking teams.
+            </p>
+          </div>
+          <button class="read-more-btn" id="readMoreBtn" onclick="toggleAbout()">Read more ↓</button>
+        </div>
+        <div class="pills">
+          <span class="pill">USD Class of 28'</span>
+          <span class="pill">Navy Veteran</span>
+          <span class="pill">San Diego, CA</span>
+          <span class="pill">Open to Opportunities</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+---
+---
+
+<div id="mobile-nav-overlay">
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#projects" onclick="closeMobileNav()">Work</a>
+  <a href="#skills" onclick="closeMobileNav()">Skills</a>
+  <a href="#resume" onclick="closeMobileNav()">Resume</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+  <button
+    class="theme-toggle theme-toggle-overlay"
+    onclick="toggleTheme(); closeMobileNav();"
+    aria-label="Toggle theme"
+  >
+    <span class="icon-moon">☾ Switch to Dark</span>
+    <span class="icon-sun">☀ Switch to Light</span>
+  </button>
+</div>
+
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-logo-mark">
+      <img src="/images/logo.svg" alt="Rafael Amezcua" />
+    </div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Rafael Amezcua</span>
+      <span class="nav-logo-title">Marketing · Analytics</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button
+      id="themeToggle"
+      class="theme-toggle"
+      onclick="toggleTheme()"
+      aria-label="Switch to dark mode"
+    >
+      <span class="icon-moon">☾</span>
+      <span class="icon-sun">☀</span>
+    </button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
