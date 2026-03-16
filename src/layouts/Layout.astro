@@ -10,7 +10,7 @@ interface Props {
 const {
   title = 'Rafael Amezcua — Marketing Analytics & Development',
   description = 'U.S. Navy Veteran and Marketing Analytics student at USD. I bridge brand strategy and technical execution — from campaign design to the database behind it.',
-  image = '/images/headshot.webp',
+  image = `${import.meta.env.BASE_URL}images/headshot.webp`,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -23,7 +23,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <link rel="canonical" href={canonicalURL} />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
 
   <!-- Primary meta -->
   <meta name="description" content={description} />
