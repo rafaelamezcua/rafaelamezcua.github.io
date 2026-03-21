@@ -85,15 +85,18 @@ import clothesImg from '../assets/images/Clothes.jpg';
         </div>
       </div>
 
-      <!-- JobTracker -->
+      <!-- Nymbus -->
       <div class="proj-card wide fade-in">
         <div class="proj-thumb" style="background:linear-gradient(135deg,#0d0d0d,#1a1a2e);height:220px;display:flex;align-items:center;justify-content:center;padding:2rem;gap:2rem;">
           <div style="flex:1;max-width:420px;">
             <div style="background:#141414;border:1px solid #222;border-radius:10px;overflow:hidden;">
-              <div style="background:#131313;padding:8px 14px;display:flex;gap:6px;border-bottom:1px solid #1e1e1e;">
-                <div style="width:8px;height:8px;border-radius:50%;background:#c46a6a;"></div>
-                <div style="width:8px;height:8px;border-radius:50%;background:#d4a847;"></div>
-                <div style="width:8px;height:8px;border-radius:50%;background:#5aad6a;"></div>
+              <div style="background:#131313;padding:8px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e1e1e;">
+                <div style="display:flex;gap:6px;">
+                  <div style="width:8px;height:8px;border-radius:50%;background:#c46a6a;"></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#d4a847;"></div>
+                  <div style="width:8px;height:8px;border-radius:50%;background:#5aad6a;"></div>
+                </div>
+                <div style="font-size:10px;font-weight:bold;color:#7f77dd;letter-spacing:1px;">Nym<span style="color:#a099ee;">bus</span></div>
               </div>
               <div style="padding:1rem;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
                 <div style="background:#1e1e1e;border-radius:6px;padding:8px 10px;">
@@ -123,11 +126,12 @@ import clothesImg from '../assets/images/Clothes.jpg';
             <span class="tag">Node.js</span>
             <span class="tag">PostgreSQL</span>
             <span class="tag">JavaScript</span>
+            <span class="tag">PWA</span>
           </div>
           <div class="proj-title" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
-            JobTracker
+            Nymbus
             <a
-              href="https://jobtracker-up.up.railway.app"
+              href="https://nymbus.pro"
               target="_blank"
               style="font-size:0.78rem;font-weight:700;color:var(--terra);text-decoration:none;border:1px solid rgba(13,110,79,0.3);padding:0.25rem 0.8rem;border-radius:0.3rem;transition:all 0.2s;"
               onmouseover="this.style.background='rgba(13,110,79,0.1)'"
@@ -135,10 +139,10 @@ import clothesImg from '../assets/images/Clothes.jpg';
             >View Live →</a>
           </div>
           <p class="proj-desc">
-            Built a full-stack job application tracker from scratch — Node.js/Express backend,
-            PostgreSQL database, JWT authentication, and a clean vanilla JS frontend. Features
-            include a monthly interview calendar, weekly goal tracker, and live application stats.
-            Deployed on Railway.
+            Built and launched a full-stack job application tracker used by real job seekers.
+            Node.js/Express backend, PostgreSQL database, JWT authentication, rate limiting, and
+            a clean vanilla JS frontend. Features a Kanban board with drag-and-drop, interview
+            calendar, CSV export, PWA support, and Google Analytics. Live at nymbus.pro.
           </p>
         </div>
       </div>
