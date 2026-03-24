@@ -223,12 +223,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
     // ── ACTIVE NAV LINKS ──
     const secs = document.querySelectorAll('section[id]');
-    const links = document.querySelectorAll('.nav-links a');
+    const links = document.querySelectorAll('.nav-link');
     window.addEventListener('scroll', () => {
       let cur = '';
       secs.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-      links.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--terra2)' : ''; });
-    });
+      links.forEach(a => {
+        const matches = a.getAttribute('href') === '#' + cur;
+        a.classList.toggle('active', matches);
+        a.style.color = '';
+      });
+    }, { passive: true });
 
     // ── MOBILE NAV ──
     const navHamburger = document.getElementById('navHamburger');
