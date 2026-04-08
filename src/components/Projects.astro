@@ -65,8 +65,15 @@ import clothesImg from '../assets/images/Clothes.jpg';
 
       <!-- Intertwine Fitness -->
       <div class="proj-panel" id="panel-intertwine">
-        <div class="proj-panel-img">
-          <img src="/if-stock1.png" alt="Intertwine Fitness website" />
+        <div class="proj-panel-img if-panel-img" id="if-carousel">
+          <img id="if-slide-img" src="/if-brand-intro.svg" alt="Brand Introduction" />
+          <button class="carousel-btn prev" onclick="moveIF(-1)">&#8249;</button>
+          <button class="carousel-btn next" onclick="moveIF(1)">&#8250;</button>
+          <div class="carousel-dots" id="if-dots">
+            <div class="dot active" onclick="goIF(0)"></div>
+            <div class="dot" onclick="goIF(1)"></div>
+            <div class="dot" onclick="goIF(2)"></div>
+          </div>
         </div>
         <div class="proj-panel-info">
           <div class="proj-tags">
@@ -134,6 +141,35 @@ import clothesImg from '../assets/images/Clothes.jpg';
     btn.classList.add('active');
     var panel = document.getElementById('panel-' + id);
     if (panel) panel.classList.add('active');
+  }
+
+  var ifSlides = [
+    { src: '/if-brand-intro.svg',  alt: 'Brand Introduction',              ratio: '1080/1350' },
+    { src: '/if-redesign.svg',     alt: 'Website Redesign Announcement',   ratio: '1080/1350' },
+    { src: '/if-1.png',            alt: 'Intertwine Fitness',              ratio: '1871/1147' },
+  ];
+  var ifIdx = 0;
+
+  function goIF(idx) {
+    ifIdx = idx;
+    var carousel = document.getElementById('if-carousel');
+    var img = document.getElementById('if-slide-img');
+    if (!carousel || !img) return;
+    img.style.opacity = '0';
+    setTimeout(function () {
+      var slide = ifSlides[ifIdx];
+      img.src = slide.src;
+      img.alt = slide.alt;
+      carousel.style.aspectRatio = slide.ratio;
+      img.style.opacity = '1';
+      document.querySelectorAll('#if-dots .dot').forEach(function (d, i) {
+        d.classList.toggle('active', i === ifIdx);
+      });
+    }, 190);
+  }
+
+  function moveIF(dir) {
+    goIF((ifIdx + dir + ifSlides.length) % ifSlides.length);
   }
 
   (function () {

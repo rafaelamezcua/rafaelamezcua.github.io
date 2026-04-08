@@ -666,6 +666,17 @@ section{padding:7rem 3rem;}
   position:absolute;inset:0;
   width:100%;height:100%;border:none;display:block;
 }
+/* Intertwine Fitness adaptive carousel */
+.if-panel-img{
+  position:relative;overflow:hidden;background:#0a0a0a;
+  min-height:unset;aspect-ratio:1080/1350;
+  transition:aspect-ratio 0.35s ease;
+}
+.if-panel-img img{
+  width:100%;height:100%;object-fit:contain;display:block;
+  transition:opacity 0.18s ease;
+}
+
 /* Cycle Care carousel inside panel */
 .cc-panel-img{background:linear-gradient(135deg,#0e1e12,#1a3020);position:relative;overflow:hidden;}
 .cc-panel-img .carousel-track{
@@ -1026,6 +1037,7 @@ footer{background:var(--dark);padding:3rem 3rem 2rem;}
   .proj-tab.active::after{bottom:unset;top:0;height:2px;}
   .proj-panel.active{grid-template-columns:1fr;min-height:unset;}
   .proj-panel-img{min-height:unset;height:240px;}
+  .if-panel-img{height:unset;aspect-ratio:1080/1350;}
   .proj-panel-info{border-left:none;border-top:1px solid var(--border);padding:1.4rem;}
 
   /* Skills accordion */
