@@ -817,6 +817,12 @@ section{padding:7rem 3rem;}
 .tl-role{font-size:1rem;font-weight:800;color:var(--dark);}
 .tl-place{font-size:0.84rem;color:var(--muted);margin-bottom:0.4rem;}
 .tl-desc{font-size:0.87rem;color:var(--text-muted);line-height:1.65;}
+/* Two-column timeline: stacked on mobile, side by side above 700px */
+.timeline-columns{display:flex;flex-direction:column;}
+@media(min-width:701px){
+  .timeline-columns{flex-direction:row;gap:3rem;}
+  .timeline-left,.timeline-right{flex:1 1 0;min-width:0;}
+}
 
 /* ── CONTACT ── */
 #contact{background:var(--bg);}
