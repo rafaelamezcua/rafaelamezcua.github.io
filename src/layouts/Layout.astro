@@ -140,23 +140,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       });
     });
 
-    // ── SKILL RINGS + BARS (fill on scroll) ──
-    const skillsObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.ring-fill').forEach(ring => {
-            ring.style.strokeDasharray = `${ring.dataset.level || 0} 100`;
-          });
-          e.target.querySelectorAll('.skill-group-bar-fill').forEach(bar => {
-            bar.style.width = `${bar.dataset.level || 0}%`;
-          });
-          skillsObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    const skillsGrid = document.querySelector('.skills-grid');
-    if (skillsGrid) skillsObs.observe(skillsGrid);
-
     // ── SKILLS ACCORDION (mobile) ──
     document.querySelectorAll('.skill-group-header').forEach(header => {
       header.addEventListener('click', () => {

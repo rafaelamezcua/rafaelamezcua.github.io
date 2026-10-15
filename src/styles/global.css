@@ -750,30 +750,10 @@ section{padding:7rem 3rem;}
 }
 .skill-group:hover{border-color:rgba(18,163,114,0.28);background:rgba(255,255,255,0.05);}
 .skill-group-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem;}
-/* Radial ring */
-.skill-ring{width:46px;height:46px;flex-shrink:0;transform:rotate(-90deg);}
-.ring-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:2.8;}
-.ring-fill{
-  fill:none;stroke:var(--terra2);stroke-width:2.8;
-  stroke-linecap:round;
-  transition:stroke-dasharray 0.8s ease-out;
-}
-.ring-pct{
-  font-size:7px;font-weight:700;fill:rgba(255,255,255,0.55);
-  text-anchor:middle;dominant-baseline:middle;
-  transform:rotate(90deg);transform-origin:18px 18px;
-  font-family:system-ui,sans-serif;
-}
 .skill-group-meta{flex:1;min-width:0;}
 .skill-group-name{
   font-size:0.78rem;text-transform:uppercase;letter-spacing:0.12em;
   color:rgba(255,255,255,0.7);font-weight:700;margin-bottom:0.5rem;
-}
-.skill-group-bar{height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;}
-.skill-group-bar-fill{
-  height:100%;background:linear-gradient(90deg,var(--terra),var(--terra2));
-  border-radius:2px;
-  transition:width 0.8s ease-out;
 }
 /* Skill chips */
 .skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
@@ -954,7 +934,6 @@ footer{background:var(--dark);padding:3rem 3rem 2rem;}
   .hero-name-row{gap:1rem;}
   .hero-logo-mark{width:100px;height:100px;}
   .hero-eyebrow{font-size:0.62rem;letter-spacing:0.12em;}
-  .hero-scroll{display:none;}
   .hero-badge{font-size:0.62rem;padding:0.28rem 0.7rem;}
   .hero-actions{gap:0.6rem;}
   .hero-cta,.hero-cta-ghost{padding:0.75rem 1.4rem;font-size:0.85rem;}
@@ -987,7 +966,6 @@ footer{background:var(--dark);padding:3rem 3rem 2rem;}
   .skill-group-header{cursor:pointer;display:flex;align-items:center;gap:0.9rem;margin-bottom:0;position:relative;}
   .skill-group-header::after{content:'+';color:var(--muted);font-size:1.1rem;font-weight:300;margin-left:auto;padding-left:0.5rem;flex-shrink:0;}
   .skill-group.open .skill-group-header::after{content:'−';}
-  .skill-group-bar{display:none;}
   .skill-tags{max-height:0;overflow:hidden;transition:max-height 0.4s ease,margin-top 0.3s;}
   .skill-group.open .skill-tags{max-height:300px;margin-top:1rem;}
 

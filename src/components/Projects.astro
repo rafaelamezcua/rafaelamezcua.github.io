@@ -208,14 +208,4 @@ import clothesImg from '../assets/images/Clothes.jpg';
     var first = carousel.querySelector('.if-slide[data-ratio]');
     if (first) carousel.style.aspectRatio = first.dataset.ratio;
   });
-
-  (function () {
-    fetch('https://nymbus.pro/stats/public')
-      .then(r => r.json())
-      .then(data => {
-        var el = document.getElementById('nymbus-desc-total');
-        if (el) el.textContent = (data.total || 0).toLocaleString();
-      })
-      .catch(() => {});
-  })();
 </script>
